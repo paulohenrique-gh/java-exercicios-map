@@ -1,8 +1,8 @@
 public class Aluno {
     private String nome;
-    private double nota;
+    private Double nota;
 
-    public Aluno(String nome, double nota) {
+    public Aluno(String nome, Double nota) {
         this.nome = nome;
         this.nota = nota;
     }
@@ -15,11 +15,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public double getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 
@@ -30,4 +30,6 @@ public class Aluno {
                 ", nota=" + nota +
                 '}';
     }
+
+
 }

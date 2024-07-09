@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GerenciadorAlunos {
@@ -41,8 +39,37 @@ public class GerenciadorAlunos {
         return this.alunosMap
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getValue().getNota() > notaBase)
+                .filter(entrada -> entrada.getValue().getNota() > notaBase)
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    // Exercício 3
+    public List<Aluno> removerAlunosNotaInferior(double notaBase) {
+        List<Aluno> alunosRemovidos = this.alunosMap
+                .values()
+                .stream()
+                .filter(aluno -> aluno.getNota() < notaBase)
+                .toList();
+
+        alunosRemovidos.forEach(aluno -> this.alunosMap.remove(aluno.getNome()));
+
+        return alunosRemovidos;
+    }
+
+    // Exercício 4
+    // https://howtodoinjava.com/java8/sort-stream-multiple-fields/
+    // https://stackoverflow.com/a/43857540/22829483
+    public Map<String, Aluno> ordenarAlunosPorNotaDec() {
+        Comparator<Aluno> comparadorAluno = Comparator.comparing(Aluno::getNota).reversed();
+        Map<String, Aluno> alunosEmOrdem = new LinkedHashMap<>();
+
+        this.alunosMap
+                .values()
+                .stream()
+                .sorted(comparadorAluno)
+                .forEach(aluno -> alunosEmOrdem.put(aluno.getNome(), aluno));
+
+        return alunosEmOrdem;
     }
 }
