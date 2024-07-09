@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,9 @@ public class Main {
         // Exercício 2
         imprimirNotaAluno("Paulo", alunosMap);
         imprimirNotaAluno("Kelly", alunosMap);
+
+        // Exercício 3
+        listaAlunosMaiorNota(6, alunosMap);
     }
 
     public static void imprimirNotaAluno(String nomeAluno, Map<String, Aluno> alunosMap) {
@@ -26,8 +30,14 @@ public class Main {
             return;
         }
 
-        alunosMap.entrySet().stream()
-                .filter(entry -> entry.getKey().equalsIgnoreCase(nomeAluno))
-                .forEach(entry -> System.out.println(entry));
+        double notaAluno = alunosMap.get(nomeAluno).getNota();
+        System.out.println("Nome: " + nomeAluno + " | Nota: " + notaAluno);
+    }
+
+    public static void listaAlunosMaiorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
+        alunosMap.values().stream()
+                .filter(aluno -> aluno.getNota() > aPartirDeNota)
+                .map(aluno -> aluno.getNome())
+                .forEach(nome -> System.out.println(nome));
     }
 }
