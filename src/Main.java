@@ -6,11 +6,13 @@ public class Main {
     public static void main(String[] args) {
         // Exercício 1
         GerenciadorAlunos gerenciadorAlunos = new GerenciadorAlunos();
-        gerenciadorAlunos.adicionarAluno(new Aluno("Fernando", 8.4));
-        gerenciadorAlunos.adicionarAluno(new Aluno("Joana", 3.3));
-        gerenciadorAlunos.adicionarAluno(new Aluno("Marcos", 7.0));
-        gerenciadorAlunos.adicionarAluno(new Aluno("Kelly", 8.7));
-        gerenciadorAlunos.adicionarAluno(new Aluno("Pedro", 6.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Fernando", 84.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Mayara", 95.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Olavo", 87.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Joana", 33.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Marcos", 70.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Kelly", 89.0));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Pedro", 60.0));
 
         gerenciadorAlunos.imprimirTodosAlunos();
 
@@ -35,17 +37,14 @@ public class Main {
         // Exercício 4
         System.out.println("\nAlunos por nota em ordem decrescente");
         Map<String, Aluno> alunosEmOrdemDescrescente = gerenciadorAlunos.ordenarAlunosPorNotaDec();
-        alunosEmOrdemDescrescente.entrySet().forEach(System.out::println);
-    }
+        alunosEmOrdemDescrescente.values().forEach(gerenciadorAlunos::imprimirAluno);
 
-    public static void listarAlunosMaiorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
-        alunosMap.values().stream()
-                .filter(aluno -> aluno.getNota() > aPartirDeNota)
-                .map(Aluno::getNome)
-                .forEach(System.out::println);
-    }
-
-    public static void removerAlunosMenorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
-
+        // Exercício 5
+        System.out.println("\nAgrupando alunos por faixa");
+        Map<String, List<Aluno>> alunosAgrupados = gerenciadorAlunos.agruparAlunosPorFaixa();
+        for (Map.Entry<String, List<Aluno>> entry : alunosAgrupados.entrySet()) {
+            System.out.println(entry.getKey() + ": ");
+            System.out.println(entry.getValue());
+        }
     }
 }

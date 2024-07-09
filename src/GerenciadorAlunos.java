@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GerenciadorAlunos {
     private Map<String, Aluno> alunosMap;
@@ -71,5 +70,24 @@ public class GerenciadorAlunos {
                 .forEach(aluno -> alunosEmOrdem.put(aluno.getNome(), aluno));
 
         return alunosEmOrdem;
+    }
+
+    // Exercício 5
+    public Map<String, List<Aluno>> agruparAlunosPorFaixa() {
+        List<Aluno> alunosA = this.alunosMap
+                .values()
+                .stream()
+                .filter(a -> a.getNota() >= 90 && a.getNota() <= 100)
+                .toList();
+        List<Aluno> alunosB = this.alunosMap
+                .values()
+                .stream()
+                .filter(a -> a.getNota() >= 80 && a.getNota() < 90)
+                .toList();
+        Map<String, List<Aluno>> alunosAgrupados = new HashMap<>();
+        alunosAgrupados.put("A", alunosA);
+        alunosAgrupados.put("B", alunosB);
+
+        return alunosAgrupados;
     }
 }
