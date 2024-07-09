@@ -23,13 +23,13 @@ public class Main {
         System.out.print("Kelly: ");
         gerenciadorAlunos.imprimirNotaAluno("Kelly");
 
-        System.out.println("\nBuscando alunos com nota acima de 6");
-        List<String> alunosAcimaMedia = gerenciadorAlunos.recuperarNomeAlunoNotaSuperior(6);
+        System.out.println("\nBuscando alunos com nota acima de 60");
+        List<String> alunosAcimaMedia = gerenciadorAlunos.recuperarNomeAlunoNotaSuperior(60);
         alunosAcimaMedia.forEach(System.out::println);
 
         // Exercício 3
-        System.out.println("\nRemovendo alunos com nota abaixo de 5");
-        List<Aluno> alunosRemovidos = gerenciadorAlunos.removerAlunosNotaInferior(5);
+        System.out.println("\nRemovendo alunos com nota abaixo de 50");
+        List<Aluno> alunosRemovidos = gerenciadorAlunos.removerAlunosNotaInferior(50);
         alunosRemovidos.forEach(System.out::println);
         System.out.println("Lista atual de alunos: ");
         gerenciadorAlunos.imprimirTodosAlunos();
