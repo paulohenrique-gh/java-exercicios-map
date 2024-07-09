@@ -1,43 +1,41 @@
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
         // Exercício 1
-        Map<String, Aluno> alunosMap = new HashMap<>();
-        alunosMap.put("Fernando", new Aluno("Fernando", 8.4));
-        alunosMap.put("Joana", new Aluno("Joana", 3.3));
-        alunosMap.put("Marcos", new Aluno("Marcos", 7));
-        alunosMap.put("Kelly", new Aluno("Kelly", 8.7));
-        alunosMap.put("Pedro", new Aluno("Pedro", 6));
+        GerenciadorAlunos gerenciadorAlunos = new GerenciadorAlunos();
+        gerenciadorAlunos.adicionarAluno(new Aluno("Fernando", 8.4));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Joana", 3.3));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Marcos", 7));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Kelly", 8.7));
+        gerenciadorAlunos.adicionarAluno(new Aluno("Pedro", 6));
 
-        alunosMap.forEach((nome, aluno) -> {
-            System.out.println("Nome: " + nome + " Aluno: " + aluno);
-        });
+        gerenciadorAlunos.imprimirTodosAlunos();
 
         // Exercício 2
-        imprimirNotaAluno("Paulo", alunosMap);
-        imprimirNotaAluno("Kelly", alunosMap);
+        System.out.println("\nBuscando notas por nome de aluno");
+        System.out.print("Paulo: ");
+        gerenciadorAlunos.imprimirNotaAluno("Paulo");
+        System.out.print("Kelly: ");
+        gerenciadorAlunos.imprimirNotaAluno("Kelly");
+
+        System.out.println("\nBuscando alunos com nota maior que 6");
+        List<String> alunosAcimaMedia = gerenciadorAlunos.recuperarNomeAlunoNotaSuperior(6);
+        alunosAcimaMedia.forEach(System.out::println);
 
         // Exercício 3
-        listaAlunosMaiorNota(6, alunosMap);
     }
 
-    public static void imprimirNotaAluno(String nomeAluno, Map<String, Aluno> alunosMap) {
-        if (!alunosMap.containsKey(nomeAluno)) {
-            System.out.println("Aluno com nome " + nomeAluno + " não localizado.");
-            return;
-        }
-
-        double notaAluno = alunosMap.get(nomeAluno).getNota();
-        System.out.println("Nome: " + nomeAluno + " | Nota: " + notaAluno);
-    }
-
-    public static void listaAlunosMaiorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
+    public static void listarAlunosMaiorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
         alunosMap.values().stream()
                 .filter(aluno -> aluno.getNota() > aPartirDeNota)
-                .map(aluno -> aluno.getNome())
-                .forEach(nome -> System.out.println(nome));
+                .map(Aluno::getNome)
+                .forEach(System.out::println);
+    }
+
+    public static void removerAlunosMenorNota(double aPartirDeNota, Map<String, Aluno> alunosMap) {
+
     }
 }
