@@ -1,5 +1,3 @@
-package Exercicio1;
-
 public class Aluno {
     private String nome;
     private double nota;
